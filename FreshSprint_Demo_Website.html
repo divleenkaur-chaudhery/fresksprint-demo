@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreshSprint — Delivered in Minutes</title>
+
+  <!--
+  ================================================================
+  GTM IMPLEMENTATION CHECKLIST
+  ================================================================
+  STEP 1: Create a GTM account at tagmanager.google.com
+  STEP 2: Replace GTM-XXXXXXX below with your Container ID
+  STEP 3: Uncomment the GTM <script> block in <head>
+  STEP 4: Uncomment the GTM <noscript> block in <body>
+  STEP 5: Open Chrome DevTools > Console to see all dataLayer pushes
+  STEP 6: Use GTM Preview Mode to verify tags fire correctly
+  STEP 7: Connect GA4 property and create a Google Tag in GTM
+  ================================================================
+  -->
+
+  <!-- Google Tag Manager — PASTE YOUR CONTAINER CODE HERE -->
+  <!--
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+  -->
+  <!-- End Google Tag Manager -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --green: #1A6B38;
+      --green-hover: #145A2E;
+      --green-light: #E6F4EC;
+      --amber: #F59E0B;
+      --amber-light: #FEF3C7;
+      --white: #FFFFFF;
+      --bg: #F4F6F3;
+      --text: #111827;
+      --muted: #6B7280;
+      --border: #E5E7EB;
+      --radius: 14px;
+      --radius-sm: 9px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.07);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.13);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100;
+      padding: 0 28px; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 21px; font-weight: 800;
+      color: var(--green); cursor: pointer; user-select: none;
+    }
+    .nav-logo span { color: var(--amber); }
+    .nav-links { display: flex; gap: 4px; }
+    .nav-btn {
+      padding: 7px 15px; border-radius: var(--radius-sm);
+      border: none; background: transparent;
+      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+      color: var(--muted); cursor: pointer; transition: all 0.18s;
+    }
+    .nav-btn:hover, .nav-btn.active {
+      background: var(--green-light); color: var(--green);
+    }
+    .cart-btn {
+      background: var(--green); color: var(--white);
+      padding: 8px 18px; border-radius: var(--radius-sm); border: none;
+      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600;
+      cursor: pointer; display: flex; align-items: center; gap: 7px;
+      transition: background 0.18s;
+    }
+    .cart-btn:hover { background: var(--green-hover); }
+    .cart-count {
+      background: var(--amber); color: #111;
+      border-radius: 50%; width: 20px; height: 20px;
+      font-size: 11px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── PAGES ── */
+    .page { display: none; padding: 28px; max-width: 1180px; margin: 0 auto; }
+    .page.active { display: block; animation: fadeIn 0.25s ease; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--green) 0%, #0D3D1F 100%);
+      border-radius: 20px; padding: 52px 44px; color: var(--white);
+      margin-bottom: 32px; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 80% 50%, rgba(245,158,11,0.15) 0%, transparent 60%);
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.15); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 5px 14px; border-radius: 30px;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.3px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 42px; font-weight: 800; line-height: 1.08;
+      margin-bottom: 14px; position: relative;
+    }
+    .hero h1 span { color: var(--amber); }
+    .hero p { font-size: 16px; opacity: 0.82; margin-bottom: 28px; max-width: 440px; }
+    .hero-cta {
+      background: var(--white); color: var(--green);
+      border: none; padding: 13px 30px;
+      border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 700;
+      cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+    .hero-art {
+      position: absolute; right: 48px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 100px; opacity: 0.18;
+      pointer-events: none;
+    }
+
+    /* ── SECTION ── */
+    .section-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 18px;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 21px; font-weight: 700;
+    }
+    .see-all {
+      color: var(--green); font-size: 14px; font-weight: 600;
+      cursor: pointer; border: none; background: none;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .see-all:hover { text-decoration: underline; }
+
+    /* ── CATEGORIES ── */
+    .categories {
+      display: flex; gap: 10px;
+      overflow-x: auto; padding-bottom: 4px;
+      margin-bottom: 28px; scrollbar-width: none;
+    }
+    .cat-chip {
+      display: flex; align-items: center; gap: 7px;
+      padding: 9px 18px; background: var(--white);
+      border: 1.5px solid var(--border); border-radius: 40px;
+      white-space: nowrap; cursor: pointer;
+      font-size: 13px; font-weight: 500; transition: all 0.18s;
+      user-select: none;
+    }
+    .cat-chip:hover, .cat-chip.active {
+      border-color: var(--green); background: var(--green-light); color: var(--green);
+    }
+
+    /* ── PRODUCT GRID ── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+      gap: 15px; margin-bottom: 36px;
+    }
+    .product-card {
+      background: var(--white); border-radius: var(--radius);
+      padding: 18px; cursor: pointer;
+      border: 1.5px solid transparent; transition: all 0.22s;
+    }
+    .product-card:hover {
+      border-color: var(--green);
+      box-shadow: var(--shadow-lg); transform: translateY(-3px);
+    }
+    .p-emoji {
+      font-size: 52px; display: block;
+      text-align: center; margin-bottom: 14px; line-height: 1;
+    }
+    .p-cat {
+      font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.7px;
+      color: var(--green); margin-bottom: 4px;
+    }
+    .p-name { font-size: 14px; font-weight: 600; margin-bottom: 3px; line-height: 1.3; }
+    .p-weight { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
+    .p-footer { display: flex; justify-content: space-between; align-items: center; }
+    .p-price {
+      font-family: 'Syne', sans-serif;
+      font-size: 19px; font-weight: 700; color: var(--green);
+    }
+    .add-btn {
+      background: var(--green); color: var(--white);
+      border: none; padding: 7px 14px;
+      border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; font-weight: 700; cursor: pointer;
+      transition: background 0.18s;
+    }
+    .add-btn:hover { background: var(--green-hover); }
+    .qty-ctrl {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--green-light); border-radius: var(--radius-sm);
+      padding: 5px 10px;
+    }
+    .q-btn {
+      background: none; border: none; color: var(--green);
+      font-size: 18px; font-weight: 800; cursor: pointer; line-height: 1;
+      width: 20px; text-align: center;
+    }
+    .q-num { font-weight: 700; color: var(--green); min-width: 16px; text-align: center; }
+
+    /* ── CART OVERLAY ── */
+    .cart-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+      z-index: 200; display: none;
+    }
+    .cart-overlay.open { display: block; animation: fadeIn 0.2s; }
+    .cart-panel {
+      position: fixed; right: 0; top: 0; bottom: 0; width: 370px;
+      background: var(--white); z-index: 201;
+      display: flex; flex-direction: column;
+      transform: translateX(100%); transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+    }
+    .cart-overlay.open .cart-panel { transform: translateX(0); }
+    .cart-head {
+      padding: 20px 24px; border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .cart-head-title {
+      font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700;
+    }
+    .x-btn {
+      background: var(--bg); border: none; border-radius: 50%;
+      width: 32px; height: 32px; font-size: 16px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--muted);
+    }
+    .cart-body { flex: 1; overflow-y: auto; padding: 12px 20px; }
+    .c-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 0; border-bottom: 1px solid var(--border);
+    }
+    .c-emoji { font-size: 32px; }
+    .c-info { flex: 1; }
+    .c-name { font-size: 14px; font-weight: 600; }
+    .c-sub { font-size: 12px; color: var(--muted); }
+    .c-price { font-weight: 700; color: var(--green); }
+    .del-btn { background: none; border: none; color: #EF4444; font-size: 16px; cursor: pointer; }
+    .cart-foot {
+      padding: 20px 24px; border-top: 1px solid var(--border);
+    }
+    .cart-total {
+      display: flex; justify-content: space-between;
+      font-size: 18px; font-weight: 700; margin-bottom: 14px;
+    }
+    .proceed-btn {
+      width: 100%; background: var(--green); color: var(--white);
+      border: none; padding: 14px; border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 700;
+      cursor: pointer; transition: background 0.18s;
+    }
+    .proceed-btn:hover { background: var(--green-hover); }
+    .empty-cart-msg { text-align: center; padding: 60px 0; color: var(--muted); }
+    .empty-cart-msg .bi { font-size: 52px; display: block; margin-bottom: 12px; }
+
+    /* ── CHECKOUT ── */
+    .co-layout {
+      display: grid; grid-template-columns: 1fr 360px; gap: 24px;
+    }
+    .form-card {
+      background: var(--white); border-radius: var(--radius);
+      padding: 28px; margin-bottom: 16px;
+    }
+    .form-card-title {
+      font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .fg { margin-bottom: 15px; }
+    .fg label {
+      display: block; font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--muted); margin-bottom: 5px;
+    }
+    .fg input, .fg select {
+      width: 100%; padding: 11px 13px;
+      border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif; font-size: 14px;
+      background: var(--bg); transition: border-color 0.18s;
+    }
+    .fg input:focus, .fg select:focus {
+      outline: none; border-color: var(--green); background: var(--white);
+    }
+    .fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .summary-card {
+      background: var(--white); border-radius: var(--radius);
+      padding: 24px; height: fit-content; position: sticky; top: 84px;
+    }
+    .s-row {
+      display: flex; justify-content: space-between;
+      padding: 9px 0; font-size: 13px; border-bottom: 1px solid var(--border);
+    }
+    .s-row:last-of-type { border-bottom: none; }
+    .s-total {
+      display: flex; justify-content: space-between;
+      padding: 12px 0 0; font-weight: 700; font-size: 18px; color: var(--green);
+    }
+    .free-delivery { font-size: 12px; color: var(--green); margin-top: 6px; }
+    .place-btn {
+      width: 100%; background: var(--green); color: var(--white);
+      border: none; padding: 15px; border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 700;
+      cursor: pointer; margin-top: 18px; transition: background 0.18s;
+    }
+    .place-btn:hover { background: var(--green-hover); }
+    .back-shop {
+      width: 100%; background: none; border: 1.5px solid var(--border);
+      padding: 11px; border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif; font-size: 14px;
+      cursor: pointer; margin-top: 8px; color: var(--muted);
+    }
+
+    /* ── CONFIRMATION ── */
+    .confirm-wrap {
+      text-align: center; padding: 80px 24px;
+      max-width: 500px; margin: 0 auto;
+    }
+    .confirm-icon { font-size: 76px; display: block; margin-bottom: 24px; }
+    .confirm-wrap h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 34px; font-weight: 800; color: var(--green); margin-bottom: 12px;
+    }
+    .confirm-wrap p { font-size: 16px; color: var(--muted); margin-bottom: 28px; }
+    .order-info {
+      background: var(--green-light); border-radius: var(--radius);
+      padding: 18px 22px; text-align: left; font-size: 14px;
+      line-height: 1.9; margin-bottom: 28px;
+    }
+    .order-info strong { color: var(--green); }
+    .back-home {
+      background: var(--green); color: var(--white);
+      border: none; padding: 14px 34px;
+      border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 700;
+      cursor: pointer; transition: background 0.18s;
+    }
+    .back-home:hover { background: var(--green-hover); }
+
+    /* ── PRODUCT MODAL ── */
+    .modal-bg {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+      z-index: 400; display: none;
+    }
+    .modal-bg.open {
+      display: flex; align-items: center; justify-content: center;
+      animation: fadeIn 0.2s;
+    }
+    .modal-box {
+      background: var(--white); border-radius: 20px;
+      padding: 32px; max-width: 420px; width: 92%;
+      position: relative; animation: fadeIn 0.22s;
+    }
+    .m-close {
+      position: absolute; top: 14px; right: 14px;
+      background: var(--bg); border: none; border-radius: 50%;
+      width: 32px; height: 32px; cursor: pointer;
+      font-size: 16px; color: var(--muted);
+    }
+    .m-emoji { font-size: 68px; display: block; text-align: center; margin-bottom: 18px; }
+    .m-cat {
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.8px; color: var(--green); margin-bottom: 6px;
+    }
+    .m-name {
+      font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; margin-bottom: 6px;
+    }
+    .m-weight { color: var(--muted); font-size: 14px; margin-bottom: 14px; }
+    .m-desc { font-size: 14px; line-height: 1.75; color: var(--muted); margin-bottom: 22px; }
+    .m-price {
+      font-family: 'Syne', sans-serif; font-size: 30px; font-weight: 800;
+      color: var(--green); margin-bottom: 18px;
+    }
+    .m-add {
+      width: 100%; background: var(--green); color: var(--white);
+      border: none; padding: 14px; border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 700;
+      cursor: pointer; transition: background 0.18s;
+    }
+    .m-add:hover { background: var(--green-hover); }
+
+    /* ── GTM STATUS BADGE ── */
+    .gtm-status {
+      position: fixed; bottom: 20px; right: 20px;
+      background: #1F2937; color: #F9FAFB;
+      padding: 8px 14px; border-radius: 8px;
+      font-size: 11px; font-weight: 600; z-index: 50;
+      display: flex; align-items: center; gap: 6px;
+      font-family: 'DM Sans', sans-serif; cursor: help;
+    }
+    .gtm-dot { width: 8px; height: 8px; border-radius: 50%; background: #EF4444; }
+    .gtm-dot.connected { background: #22C55E; }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed; bottom: 28px; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: #1F2937; color: var(--white);
+      padding: 11px 22px; border-radius: 30px;
+      font-size: 14px; font-weight: 500; z-index: 600;
+      transition: transform 0.28s cubic-bezier(.4,0,.2,1);
+      pointer-events: none; white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ── INFO BANNER ── */
+    .dev-banner {
+      background: var(--amber-light); border-bottom: 1px solid var(--amber);
+      padding: 10px 28px; font-size: 12px; font-weight: 500;
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .co-layout { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 28px; }
+      .cart-panel { width: 100%; }
+      .hero-art { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- GTM noscript — Uncomment and replace GTM-XXXXXXX -->
+<!--
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+-->
+
+<!-- Dev Banner -->
+<div class="dev-banner">
+  📊 <strong>GTM + GA4 Portfolio Demo</strong> — Open DevTools › Console to watch every dataLayer event fire in real time. Connect GTM to track in GA4.
+</div>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-logo" onclick="navigateTo('home')">Fresh<span>Sprint</span></div>
+  <div class="nav-links">
+    <button class="nav-btn active" id="nav-home" onclick="navigateTo('home')">Home</button>
+    <button class="nav-btn" id="nav-products" onclick="navigateTo('products')">Products</button>
+  </div>
+  <button class="cart-btn" onclick="openCart()">
+    🛒 Cart <span class="cart-count" id="cartCount">0</span>
+  </button>
+</nav>
+
+<!-- ═══ HOME PAGE ═══ -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-badge">⚡ Delivered in 10 Minutes</div>
+    <h1>Fresh Groceries,<br><span>Lightning Fast</span></h1>
+    <p>Daily essentials delivered straight to your door. No fuss, no queues — just fresh.</p>
+    <button class="hero-cta" onclick="navigateTo('products')">Shop All Products →</button>
+    <div class="hero-art">🛒</div>
+  </div>
+
+  <div class="section-header">
+    <h2 class="section-title">Shop by Category</h2>
+  </div>
+  <div class="categories" id="homeCatFilters">
+    <div class="cat-chip active" onclick="filterHome('All', this)">🛍️ All</div>
+    <div class="cat-chip" onclick="filterHome('Dairy', this)">🥛 Dairy</div>
+    <div class="cat-chip" onclick="filterHome('Snacks', this)">🍟 Snacks</div>
+    <div class="cat-chip" onclick="filterHome('Staples', this)">🌾 Staples</div>
+    <div class="cat-chip" onclick="filterHome('Personal Care', this)">🧴 Personal Care</div>
+    <div class="cat-chip" onclick="filterHome('Health', this)">💊 Health</div>
+  </div>
+
+  <div class="section-header">
+    <h2 class="section-title">Featured Products</h2>
+    <button class="see-all" onclick="navigateTo('products')">See all →</button>
+  </div>
+  <div class="products-grid" id="homeGrid"></div>
+</div>
+
+<!-- ═══ PRODUCTS PAGE ═══ -->
+<div class="page" id="page-products">
+  <div class="section-header">
+    <h2 class="section-title">All Products</h2>
+  </div>
+  <div class="categories" id="prodCatFilters">
+    <div class="cat-chip active" onclick="filterProds('All', this)">🛍️ All</div>
+    <div class="cat-chip" onclick="filterProds('Dairy', this)">🥛 Dairy</div>
+    <div class="cat-chip" onclick="filterProds('Snacks', this)">🍟 Snacks</div>
+    <div class="cat-chip" onclick="filterProds('Staples', this)">🌾 Staples</div>
+    <div class="cat-chip" onclick="filterProds('Personal Care', this)">🧴 Personal Care</div>
+    <div class="cat-chip" onclick="filterProds('Health', this)">💊 Health</div>
+  </div>
+  <div class="products-grid" id="prodGrid"></div>
+</div>
+
+<!-- ═══ CHECKOUT PAGE ═══ -->
+<div class="page" id="page-checkout">
+  <div class="co-layout">
+    <div>
+      <div class="form-card">
+        <div class="form-card-title">📦 Delivery Details</div>
+        <div class="fg-row">
+          <div class="fg"><label>First Name</label><input id="f_first" type="text" placeholder="Divleen"></div>
+          <div class="fg"><label>Last Name</label><input id="f_last" type="text" placeholder="Kaur"></div>
+        </div>
+        <div class="fg"><label>Phone Number</label><input id="f_phone" type="tel" placeholder="+91 98765 43210"></div>
+        <div class="fg"><label>Delivery Address</label><input id="f_addr" type="text" placeholder="Flat / House, Street, Colony"></div>
+        <div class="fg-row">
+          <div class="fg"><label>City</label><input id="f_city" type="text" placeholder="Dehradun"></div>
+          <div class="fg"><label>Pincode</label><input id="f_pin" type="text" placeholder="248001"></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="form-card-title">💳 Payment Method</div>
+        <div class="fg">
+          <label>Choose Payment</label>
+          <select id="f_pay">
+            <option>UPI (Recommended)</option>
+            <option>Credit / Debit Card</option>
+            <option>Cash on Delivery</option>
+            <option>Net Banking</option>
+          </select>
+        </div>
+        <div class="fg"><label>UPI ID</label><input id="f_upi" type="text" placeholder="yourname@paytm"></div>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div class="form-card-title">🧾 Order Summary</div>
+      <div id="coItems"></div>
+      <div class="s-total">
+        <span>Total</span>
+        <span id="coTotal">₹0</span>
+      </div>
+      <div class="free-delivery">✅ Free delivery on all orders</div>
+      <button class="place-btn" onclick="placeOrder()">Place Order →</button>
+      <button class="back-shop" onclick="navigateTo('home')">Continue Shopping</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONFIRMATION PAGE ═══ -->
+<div class="page" id="page-confirmation">
+  <div class="confirm-wrap">
+    <span class="confirm-icon">🎉</span>
+    <h2>Order Confirmed!</h2>
+    <p>Your groceries are on the way. Our delivery partner will reach you in approximately 10 minutes.</p>
+    <div class="order-info">
+      <strong>Order ID:</strong> <span id="orderId">FS-XXXXX</span><br>
+      <strong>Estimated Delivery:</strong> 10 minutes<br>
+      <strong>Payment:</strong> <span id="orderPayment">UPI</span><br>
+      <strong>Tracking:</strong> SMS sent to your mobile
+    </div>
+    <button class="back-home" onclick="navigateTo('home')">Continue Shopping</button>
+  </div>
+</div>
+
+<!-- ═══ CART SIDEBAR ═══ -->
+<div class="cart-overlay" id="cartOverlay" onclick="maybeCloseCart(event)">
+  <div class="cart-panel">
+    <div class="cart-head">
+      <span class="cart-head-title">My Cart 🛒</span>
+      <button class="x-btn" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody"></div>
+    <div id="cartFoot" class="cart-foot" style="display:none">
+      <div class="cart-total"><span>Total</span><span id="cartTotalAmt">₹0</span></div>
+      <button class="proceed-btn" onclick="goCheckout()">Proceed to Checkout →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PRODUCT DETAIL MODAL ═══ -->
+<div class="modal-bg" id="modalBg" onclick="maybeCloseModal(event)">
+  <div class="modal-box" id="modalBox">
+    <button class="m-close" onclick="closeModal()">✕</button>
+    <span class="m-emoji" id="mEmoji"></span>
+    <div class="m-cat" id="mCat"></div>
+    <div class="m-name" id="mName"></div>
+    <div class="m-weight" id="mWeight"></div>
+    <div class="m-desc" id="mDesc"></div>
+    <div class="m-price" id="mPrice"></div>
+    <button class="m-add" id="mAddBtn">Add to Cart</button>
+  </div>
+</div>
+
+<!-- GTM Status Badge -->
+<div class="gtm-status" title="Open DevTools Console to see dataLayer events">
+  <span class="gtm-dot" id="gtmDot"></span>
+  <span id="gtmLabel">GTM Not Connected</span>
+</div>
+
+<!-- Toast Notification -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   dataLayer INITIALIZATION
+   Must be placed ABOVE the GTM script tag in <head>
+   ============================================================ */
+window.dataLayer = window.dataLayer || [];
+
+/* ============================================================
+   PRODUCT CATALOG — FMCG / QUICK COMMERCE
+   ============================================================ */
+const PRODUCTS = [
+  {
+    id: 'SKU001', name: 'Amul Full Cream Milk', weight: '1 Litre',
+    price: 68, category: 'Dairy', emoji: '🥛',
+    desc: 'Fresh, pasteurized full cream milk from Amul. Rich in calcium and protein. Perfect for tea, cooking, and direct consumption. No preservatives added.'
+  },
+  {
+    id: 'SKU002', name: 'Tata Rock Salt', weight: '1 kg',
+    price: 24, category: 'Staples', emoji: '🧂',
+    desc: 'Unrefined rock salt sourced from natural mines. Retains natural minerals and trace elements. No artificial additives. Essential for everyday cooking.'
+  },
+  {
+    id: 'SKU003', name: "Lay's Classic Salted", weight: '52g',
+    price: 20, category: 'Snacks', emoji: '🍟',
+    desc: "Irresistibly crispy potato chips with the perfect amount of classic salt. Made from real potatoes, cooked to a perfect golden crisp. The snack that defines teatime."
+  },
+  {
+    id: 'SKU004', name: 'Parle-G Biscuits', weight: '800g',
+    price: 55, category: 'Snacks', emoji: '🍪',
+    desc: "India's most loved glucose biscuit for over 80 years. Made from wheat flour and milk solids. A classic snack for tea-time and tiffins. Beloved by generations."
+  },
+  {
+    id: 'SKU005', name: 'MDH Chole Masala', weight: '100g',
+    price: 45, category: 'Staples', emoji: '🌶️',
+    desc: 'Authentic blend of 14 aromatic spices for the perfect Punjabi chole. Restaurant-quality taste at home. No artificial colours or flavours. Just pure spice magic.'
+  },
+  {
+    id: 'SKU006', name: 'Dabur Honey', weight: '250g',
+    price: 149, category: 'Health', emoji: '🍯',
+    desc: '100% pure, natural honey — no added sugar or preservatives. Rich in antioxidants and natural enzymes. Ideal for health drinks, desserts, and immunity support.'
+  },
+  {
+    id: 'SKU007', name: 'Fortune Sunflower Oil', weight: '1 Litre',
+    price: 130, category: 'Staples', emoji: '🫙',
+    desc: 'Light, healthy sunflower oil ideal for everyday Indian cooking. Rich in Vitamin E and unsaturated fats. Low smoke point. Perfect for sautéing, frying, and baking.'
+  },
+  {
+    id: 'SKU008', name: 'Dove Moisturising Soap', weight: '100g',
+    price: 45, category: 'Personal Care', emoji: '🧼',
+    desc: 'With ¼ moisturising cream, Dove Beauty Bar leaves skin feeling softer and more radiant with every wash. Milder than ordinary soaps. Dermatologist recommended.'
+  },
+  {
+    id: 'SKU009', name: 'Maggi 2-Minute Noodles', weight: '280g (4 pack)',
+    price: 68, category: 'Snacks', emoji: '🍜',
+    desc: "The iconic 2-minute noodles everyone grew up with. Quick, satisfying, and delicious. Made with quality wheat flour and the classic Masala Tastemaker. Ready in 2 minutes."
+  },
+  {
+    id: 'SKU010', name: 'Britannia NutriChoice', weight: '200g',
+    price: 35, category: 'Health', emoji: '🌾',
+    desc: 'High-fibre digestive biscuits baked with 70% whole wheat. Light and crispy with a subtle oat flavour. A smarter, healthier snacking choice. No maida, no cholesterol.'
+  },
+];
+
+/* ============================================================
+   CART STATE
+   ============================================================ */
+let cart = {};
+let currentProduct = null;
+let prodFilter = 'All';
+
+/* ============================================================
+   dataLayer PUSH HELPER
+   All GA4 events go through this function.
+   ============================================================ */
+function dl(eventObj) {
+  window.dataLayer.push(eventObj);
+  // Visual debug in console — remove in production
+  console.log(
+    '%c📊 dataLayer.push',
+    'background:#1A6B38;color:#fff;padding:2px 8px;border-radius:4px;font-weight:bold;',
+    eventObj
+  );
+}
+
+/* ============================================================
+   PAGE NAVIGATION WITH GA4 page_view TRACKING
+   ============================================================ */
+const PAGE_TITLES = {
+  home: 'Home — FreshSprint',
+  products: 'Products — FreshSprint',
+  checkout: 'Checkout — FreshSprint',
+  confirmation: 'Order Confirmed — FreshSprint'
+};
+
+function navigateTo(name) {
+  // Hide all pages
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+
+  // Nav button states
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  const nb = document.getElementById('nav-' + name);
+  if (nb) nb.classList.add('active');
+
+  window.location.hash = name;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // ── GA4: page_view ──────────────────────────────────────────
+  dl({
+    event: 'page_view',
+    page_title: PAGE_TITLES[name] || name,
+    page_path: '/' + name,
+    page_location: window.location.href,
+  });
+}
+
+/* ============================================================
+   RENDER PRODUCT CARDS
+   ============================================================ */
+function renderGrid(containerId, products) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = products.map(p => {
+    const qty = cart[p.id] || 0;
+    return `
+      <div class="product-card" onclick="openProduct('${p.id}')">
+        <span class="p-emoji">${p.emoji}</span>
+        <div class="p-cat">${p.category}</div>
+        <div class="p-name">${p.name}</div>
+        <div class="p-weight">${p.weight}</div>
+        <div class="p-footer">
+          <span class="p-price">₹${p.price}</span>
+          ${qty === 0
+            ? `<button class="add-btn" onclick="addCart(event,'${p.id}')">+ Add</button>`
+            : `<div class="qty-ctrl">
+                <button class="q-btn" onclick="changeQty(event,'${p.id}',-1)">−</button>
+                <span class="q-num">${qty}</span>
+                <button class="q-btn" onclick="changeQty(event,'${p.id}',1)">+</button>
+               </div>`
+          }
+        </div>
+      </div>`;
+  }).join('');
+
+  // ── GA4: view_item_list ──────────────────────────────────────
+  dl({
+    event: 'view_item_list',
+    ecommerce: {
+      item_list_id: containerId,
+      item_list_name: containerId === 'homeGrid' ? 'Featured Products' : 'All Products',
+      items: products.map((p, i) => ({
+        item_id: p.id,
+        item_name: p.name,
+        item_category: p.category,
+        price: p.price,
+        currency: 'INR',
+        index: i + 1,
+      }))
+    }
+  });
+}
+
+/* ============================================================
+   CATEGORY FILTERS
+   ============================================================ */
+function filterHome(cat, el) {
+  document.querySelectorAll('#homeCatFilters .cat-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  renderGrid('homeGrid', cat === 'All' ? PRODUCTS : PRODUCTS.filter(p => p.category === cat));
+
+  // ── GA4: select_content (category filter) ───────────────────
+  dl({ event: 'select_content', content_type: 'category', content_id: cat });
+}
+
+function filterProds(cat, el) {
+  prodFilter = cat;
+  document.querySelectorAll('#prodCatFilters .cat-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  renderGrid('prodGrid', cat === 'All' ? PRODUCTS : PRODUCTS.filter(p => p.category === cat));
+  dl({ event: 'select_content', content_type: 'category', content_id: cat });
+}
+
+/* ============================================================
+   PRODUCT DETAIL MODAL
+   ============================================================ */
+function openProduct(id) {
+  currentProduct = PRODUCTS.find(p => p.id === id);
+  if (!currentProduct) return;
+
+  document.getElementById('mEmoji').textContent  = currentProduct.emoji;
+  document.getElementById('mCat').textContent    = currentProduct.category;
+  document.getElementById('mName').textContent   = currentProduct.name;
+  document.getElementById('mWeight').textContent = currentProduct.weight;
+  document.getElementById('mDesc').textContent   = currentProduct.desc;
+  document.getElementById('mPrice').textContent  = `₹${currentProduct.price}`;
+  document.getElementById('modalBg').classList.add('open');
+
+  // ── GA4: view_item ───────────────────────────────────────────
+  dl({
+    event: 'view_item',
+    ecommerce: {
+      currency: 'INR',
+      value: currentProduct.price,
+      items: [{
+        item_id: currentProduct.id,
+        item_name: currentProduct.name,
+        item_category: currentProduct.category,
+        price: currentProduct.price,
+        quantity: 1,
+      }]
+    }
+  });
+}
+
+function closeModal() {
+  document.getElementById('modalBg').classList.remove('open');
+  currentProduct = null;
+}
+
+function maybeCloseModal(e) {
+  if (e.target === document.getElementById('modalBg')) closeModal();
+}
+
+document.getElementById('mAddBtn').onclick = () => {
+  if (currentProduct) { addCartById(currentProduct.id); closeModal(); }
+};
+
+/* ============================================================
+   ADD TO CART
+   ============================================================ */
+function addCart(e, id) { e.stopPropagation(); addCartById(id); }
+
+function addCartById(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if (!p) return;
+  cart[id] = (cart[id] || 0) + 1;
+
+  // ── GA4: add_to_cart ──────────────────────────────────────────
+  dl({
+    event: 'add_to_cart',
+    ecommerce: {
+      currency: 'INR',
+      value: p.price,
+      items: [{
+        item_id: p.id, item_name: p.name,
+        item_category: p.category, price: p.price, quantity: 1
+      }]
+    }
+  });
+
+  refreshCartUI();
+  toast(`${p.emoji} ${p.name} added!`);
+  refreshGrids();
+}
+
+function changeQty(e, id, delta) {
+  e.stopPropagation();
+  const p = PRODUCTS.find(x => x.id === id);
+  const next = (cart[id] || 0) + delta;
+  if (next <= 0) {
+    delete cart[id];
+    dl({
+      event: 'remove_from_cart',
+      ecommerce: { currency: 'INR', value: p.price, items: [{ item_id: id, item_name: p.name, price: p.price, quantity: 1 }] }
+    });
+  } else {
+    cart[id] = next;
+    if (delta > 0) {
+      dl({
+        event: 'add_to_cart',
+        ecommerce: { currency: 'INR', value: p.price, items: [{ item_id: id, item_name: p.name, price: p.price, quantity: 1 }] }
+      });
+    }
+  }
+  refreshCartUI();
+  refreshGrids();
+}
+
+/* ============================================================
+   CART SIDEBAR
+   ============================================================ */
+function openCart() {
+  document.getElementById('cartOverlay').classList.add('open');
+  renderCartSidebar();
+}
+function closeCart() { document.getElementById('cartOverlay').classList.remove('open'); }
+function maybeCloseCart(e) {
+  if (e.target === document.getElementById('cartOverlay')) closeCart();
+}
+
+function renderCartSidebar() {
+  const body = document.getElementById('cartBody');
+  const foot = document.getElementById('cartFoot');
+  const items = Object.entries(cart).filter(([, q]) => q > 0);
+
+  if (!items.length) {
+    body.innerHTML = `<div class="empty-cart-msg"><span class="bi">🛒</span><p>Your cart is empty</p></div>`;
+    foot.style.display = 'none';
+    return;
+  }
+
+  let total = 0;
+  body.innerHTML = items.map(([id, qty]) => {
+    const p = PRODUCTS.find(x => x.id === id);
+    const sub = p.price * qty;
+    total += sub;
+    return `<div class="c-item">
+      <span class="c-emoji">${p.emoji}</span>
+      <div class="c-info">
+        <div class="c-name">${p.name}</div>
+        <div class="c-sub">${p.weight} × ${qty}</div>
+      </div>
+      <span class="c-price">₹${sub}</span>
+      <button class="del-btn" onclick="removeItem('${id}')">✕</button>
+    </div>`;
+  }).join('');
+
+  document.getElementById('cartTotalAmt').textContent = `₹${total}`;
+  foot.style.display = 'block';
+}
+
+function removeItem(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  dl({
+    event: 'remove_from_cart',
+    ecommerce: { currency: 'INR', value: p.price * (cart[id] || 1),
+      items: [{ item_id: id, item_name: p.name, price: p.price, quantity: cart[id] || 1 }] }
+  });
+  delete cart[id];
+  refreshCartUI();
+  refreshGrids();
+}
+
+function refreshCartUI() {
+  const total = Object.values(cart).reduce((a, b) => a + b, 0);
+  document.getElementById('cartCount').textContent = total;
+  renderCartSidebar();
+}
+
+/* ============================================================
+   CHECKOUT FLOW
+   ============================================================ */
+function goCheckout() {
+  closeCart();
+  const items = cartItems();
+  const value = cartTotal(items);
+
+  // ── GA4: begin_checkout ───────────────────────────────────────
+  dl({
+    event: 'begin_checkout',
+    ecommerce: {
+      currency: 'INR',
+      value: value,
+      coupon: '',
+      items: items,
+    }
+  });
+
+  renderOrderSummary(items, value);
+  navigateTo('checkout');
+}
+
+function renderOrderSummary(items, value) {
+  document.getElementById('coItems').innerHTML = items.map(i => {
+    const p = PRODUCTS.find(x => x.id === i.item_id);
+    return `<div class="s-row"><span>${p.emoji} ${i.item_name} ×${i.quantity}</span><span>₹${i.price * i.quantity}</span></div>`;
+  }).join('');
+  document.getElementById('coTotal').textContent = `₹${value}`;
+}
+
+function placeOrder() {
+  const items = cartItems();
+  const value = cartTotal(items);
+  const txId = 'FS-' + Math.floor(10000 + Math.random() * 90000);
+  const payMethod = document.getElementById('f_pay').value || 'UPI';
+
+  // ── GA4: add_payment_info ─────────────────────────────────────
+  dl({
+    event: 'add_payment_info',
+    ecommerce: {
+      currency: 'INR',
+      value: value,
+      payment_type: payMethod,
+      items: items,
+    }
+  });
+
+  // ── GA4: purchase — THE MOST IMPORTANT ECOMMERCE EVENT ────────
+  dl({
+    event: 'purchase',
+    ecommerce: {
+      transaction_id: txId,
+      affiliation: 'FreshSprint Demo Store',
+      value: value,
+      tax: Math.round(value * 0.05),
+      shipping: 0,
+      currency: 'INR',
+      coupon: '',
+      items: items,
+    }
+  });
+
+  document.getElementById('orderId').textContent = txId;
+  document.getElementById('orderPayment').textContent = payMethod;
+
+  cart = {};
+  refreshCartUI();
+  refreshGrids();
+  navigateTo('confirmation');
+}
+
+/* ============================================================
+   CART UTILITY HELPERS
+   ============================================================ */
+function cartItems() {
+  return Object.entries(cart)
+    .filter(([, q]) => q > 0)
+    .map(([id, qty]) => {
+      const p = PRODUCTS.find(x => x.id === id);
+      return { item_id: p.id, item_name: p.name, item_category: p.category, price: p.price, quantity: qty };
+    });
+}
+
+function cartTotal(items) {
+  return items.reduce((s, i) => s + i.price * i.quantity, 0);
+}
+
+function refreshGrids() {
+  if (document.getElementById('homeGrid').children.length)
+    renderGrid('homeGrid', PRODUCTS);
+  if (document.getElementById('prodGrid').children.length) {
+    const filtered = prodFilter === 'All' ? PRODUCTS : PRODUCTS.filter(p => p.category === prodFilter);
+    renderGrid('prodGrid', filtered);
+  }
+}
+
+/* ============================================================
+   TOAST NOTIFICATION
+   ============================================================ */
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2400);
+}
+
+/* ============================================================
+   GTM STATUS DETECTION
+   ============================================================ */
+function checkGTM() {
+  // If GTM container is loaded, google_tag_manager will be defined
+  if (typeof window.google_tag_manager !== 'undefined') {
+    document.getElementById('gtmDot').classList.add('connected');
+    document.getElementById('gtmLabel').textContent = 'GTM Connected ✓';
+  }
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+window.addEventListener('DOMContentLoaded', () => {
+  // Render home grid
+  renderGrid('homeGrid', PRODUCTS);
+
+  // Fire initial page_view
+  dl({
+    event: 'page_view',
+    page_title: 'Home — FreshSprint',
+    page_path: '/home',
+    page_location: window.location.href,
+  });
+
+  // Hash routing
+  const hash = window.location.hash.replace('#', '');
+  if (['home','products','checkout','confirmation'].includes(hash)) navigateTo(hash);
+
+  // Check GTM after short delay
+  setTimeout(checkGTM, 800);
+
+  console.log(
+    '%c🌿 FreshSprint GTM Demo\n%cOpen this file in a browser.\nPaste your GTM container ID and uncomment the script blocks.\nAll dataLayer pushes will log here.',
+    'font-size:16px;font-weight:bold;color:#1A6B38;',
+    'color:#555;'
+  );
+});
+</script>
+</body>
+</html>
